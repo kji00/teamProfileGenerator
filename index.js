@@ -1,6 +1,15 @@
+// requires npm inquirer and nodeJS filesystem
 const inquirer = require('inquirer');
 const fs = require('fs');
-const { inherits } = require('util');
+
+// team classes
+const Manager = require("./lib/manager");
+const Engineer = require("./lib/engineer");
+const Intern = require("./lib/intern");
+
+// html creator
+const generateHTML = require("./src/generateHTML");
+
 
 const managerPrompt =  () => {
     inquirer.prompt([
@@ -21,11 +30,20 @@ const managerPrompt =  () => {
         },
         {
             type: "input",
-            name: "phoneNumber",
+            name: "officeNumber",
             message: "What is your manager's phone number?"
         }
     ])
-    .then(console.log(managerPrompt))
+    .then(value => {
+        const manager = new Manager(
+            value.name,
+            value.id,
+            value.email,
+            value.officeNumber,
+        );
+        
+        console.log(manager)
+    }) 
 }
 
 function init(){

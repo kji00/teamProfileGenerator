@@ -13,6 +13,7 @@ const generateHTML = require("./src/generateHTML");
 // add all employees into an empty array
 const team = [];
 
+// manager questions using inquirer.prompt
 const managerPrompt = () => {
     inquirer.prompt([
         {
@@ -36,6 +37,7 @@ const managerPrompt = () => {
             message: "Enter manager's office phone number:"
         }
     ])
+        // creates Manager object with the inquirer data
         .then(value => {
             const manager = new Manager(
                 value.name,
@@ -47,8 +49,9 @@ const managerPrompt = () => {
             team.push(manager);
             employeePrompt();
         })
-}
+};
 
+// adding engineer or intern using inquirer.prompt
 const employeePrompt = () => {
     inquirer.prompt([
         {
@@ -73,22 +76,25 @@ const employeePrompt = () => {
             message: "Enter employee's email address:",
         },
         {
+            // github question only gets asked 'when' the choice is Engineer 
             type: "input",
             name: "github",
             message: "Enter employee's github username:",
             when: input => input.position === 'Engineer',
         },
         {
+            // school question only gets asked 'when' the choice is Intern
             type: "input",
             name: "school",
             message: "Enter intern's school name:",
             when: input => input.position === 'Intern',
         },
         {
+            // choose whether or not you want to continue to add more employee's or not
             type: "confirm",
             name: "addEmployee",
             message: "Add more employees:",
-            default: false
+            default: false,
         }
     ])
         .then(value => {
@@ -96,6 +102,7 @@ const employeePrompt = () => {
             // needs undeclared variable to create employee object
             let employee;
 
+            // creates Engineer or Intern object with the inquirer data depending on the 'choice' that was made
             if (value.position === 'Engineer') {
                 employee = new Engineer(
                     value.name,
@@ -111,24 +118,28 @@ const employeePrompt = () => {
                     value.school,
                 )
             }
-            console.log(employee)
 
             team.push(employee);
 
+            // checks if the last question to add more users is either true or false. default state is set to false. If no is selected move ont to create index.html page
             if (value.addEmployee) {
                 return employeePrompt(team)
             } else {
                 console.log(team)
-                return team;
+                // createHTML();
             }
         })
+};
+
+createHTML = team => {
+    const htmlPage = generateHTML(team)
+
+    fs.writeFile("./dist/index.html", htmlPage, err =>
+    err ? console.error(err) : console.log("created index.html"))
 }
 
-function init() {
-    managerPrompt();
-}
-
-init()
+// starts the program
+managerPrompt();
 
 
 

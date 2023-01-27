@@ -45,6 +45,7 @@ const managerPrompt = () => {
             );
 
             team.push(manager);
+            employeePrompt();
         })
 }
 
@@ -86,20 +87,24 @@ const employeePrompt = () => {
         {
             type: "confirm",
             name: "addEmployee",
-            message: "Add more employees: Y/N",
+            message: "Add more employees:",
             default: false
         }
     ])
         .then(value => {
-            if (position === 'Engineer') {
-                const employee = new Engineer(
+
+            // needs undeclared variable to create employee object
+            let employee;
+
+            if (value.position === 'Engineer') {
+                employee = new Engineer(
                     value.name,
                     value.id,
                     value.email,
                     value.github,
                 );
-            } else if (position === 'Intern') {
-                const employee = new Intern(
+            } else if (value.position === 'Intern') {
+                employee = new Intern(
                     value.name,
                     value.id,
                     value.email,
@@ -110,9 +115,10 @@ const employeePrompt = () => {
 
             team.push(employee);
 
-            if (addEmployee) {
-                return employeePrompt()
+            if (value.addEmployee) {
+                return employeePrompt(team)
             } else {
+                console.log(team)
                 return team;
             }
         })

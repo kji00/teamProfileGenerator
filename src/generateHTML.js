@@ -1,3 +1,8 @@
-// generateHTML = data => {
+generateHTML = data => {
+    return
+
+    `
     
-// }
+    `
+    
+}

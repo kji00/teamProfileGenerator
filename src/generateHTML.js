@@ -6,9 +6,18 @@ const data = [
     { name: 'z', id: '5', email: 'z@a.com', school: 'college', role: 'Intern'},
     { name: 'y', id: '6', email: 'y@a.com', school: 'college', role: 'Intern' },
   ]
+const manCard = function(manData){
 
-const generateHTML = function(data){
-    console.log(data)
 }
+
+const generateHTML = function(x){
+    for(let i = 0; i < x.length; i++ ){
+        if (i.role === 'Manager'){
+            const manager = manCard(x[i])
+        } else if ()
+    }
+}
+
+generateHTML(data);
 
 

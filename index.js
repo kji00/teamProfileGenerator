@@ -133,7 +133,7 @@ const employeePrompt = () => {
 createHTML = team => {
     const htmlPage = generateHTML(team)
 
-    fs.writeFile("./dist/test.html", htmlPage, err =>
+    fs.writeFile("./dist/index.html", htmlPage, err =>
     err ? console.error(err) : console.log("created index.html"))
 }
 

@@ -1,8 +1,10 @@
 # teamProfileGenerator
 
+## Descirption
 In this project I am generating a webpage with team member info. The information will be gathered at using a command-line application setup with NodeJS,
 npm for packages, inquirer to ask questions and receive data and jest to test class functionality. The User Story is below:
 
+## User Story
 AS A manager
 I WANT to generate a webpage that displays my team's basic info
 SO THAT I have quick access to their emails and GitHub profiles
@@ -31,3 +33,7 @@ THEN I exit the application, and the HTML is generated
 
 Each position of Manager, Engineer and Intern will be it's own class with the parent class of Employee being extended in. Each sub-class will have different
 properties and methods depending on their position at this ficticious company.
+
+## Video Link
+
+[Link](https://watch.screencastify.com/v/UzcU8rpwL85zPRIeteIl)]

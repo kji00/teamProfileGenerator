@@ -8,7 +8,7 @@ const Engineer = require("./lib/engineer");
 const Intern = require("./lib/intern");
 
 // html creator
-// const generateHTML = require("./src/generateHTML");
+const generateHTML = require("./src/generateHTML");
 
 // add all employees into an empty array
 const team = [];
@@ -125,50 +125,17 @@ const employeePrompt = () => {
             if (value.addEmployee) {
                 return employeePrompt(team)
             } else {
-                console.log(team)
-                // createHTML();
-                test(team);
+                createHTML(team);
             }
         })
 };
 
-const test = (team) => {
-    
-    console.log('inside test')
-    for (let i = 0; i < team.length; i++){
-        const employee = team[i];
-        const role = employee.getRole();
+createHTML = team => {
+    const htmlPage = generateHTML(team)
 
-        if (role === 'Manager') {
-            const manCard = createManager(employee)
-            console.log(manCard)
-        } else {
-            console.log('done')
-        }
-    }
-};
-
-const createManager = (d) => {
-
-    return `<div class="col-6">
-                    <div class="card mx-auto mb-4 shadow-sm">
-                        <div class="card-header">
-                            <h3>${d.name}<br/><br/>${d.getRole()}</h3>
-                        </div>
-                        <ul class="list-unstyled mt-3 mb-4">
-                            <li>ID: ${d.id}</li>
-                            <li>Email: ${d.email}</li>
-                            <li>Office Number: ${d.getOfficeNumber()}</li>
-                        </ul>
-                    </div>
-                </div>`
+    fs.writeFile("./dist/test.html", htmlPage, err =>
+    err ? console.error(err) : console.log("created index.html"))
 }
-// createHTML = team => {
-//     const htmlPage = generateHTML(team)
-
-//     fs.writeFile("./dist/test.html", htmlPage, err =>
-//     err ? console.error(err) : console.log("created index.html"))
-// }
 
 // starts the program
 managerPrompt();

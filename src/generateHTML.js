@@ -1,3 +1,3 @@
-generateHTML = data => {
+// generateHTML = data => {
     
-}
+// }

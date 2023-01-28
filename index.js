@@ -8,7 +8,7 @@ const Engineer = require("./lib/engineer");
 const Intern = require("./lib/intern");
 
 // html creator
-const generateHTML = require("./src/generateHTML");
+// const generateHTML = require("./src/generateHTML");
 
 // add all employees into an empty array
 const team = [];
@@ -134,7 +134,7 @@ const employeePrompt = () => {
 createHTML = team => {
     const htmlPage = generateHTML(team)
 
-    fs.writeFile("./dist/index.html", htmlPage, err =>
+    fs.writeFile("./dist/test.html", htmlPage, err =>
     err ? console.error(err) : console.log("created index.html"))
 }
 
